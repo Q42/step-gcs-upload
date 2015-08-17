@@ -1,0 +1,39 @@
+name: Google Cloud Storage upload
+description: |
+  Upload a IPA to google cloud storage
+website: https://github.com/Q42/step-gcs-upload
+fork_url: https://github.com/Q42/step-gcs-upload
+source:
+  git: https://github.com/Q42/step-gcs-upload
+host_os_tags:
+  - osx-10.10
+is_requires_admin_user: false
+is_always_run: true
+inputs:
+  - 
+    mapped_to: GCS_EMAIL
+    title: Google Cloud Email
+    is_expand: true
+    is_required: true
+  - 
+    mapped_to: GCS_PRIVATE_KEY
+    title: Google Cloud Private Key
+    description: |
+      On one line, carriage return = \n
+    is_expand: true
+    is_required: true
+  - 
+    mapped_to: GCS_FOLDER
+    title: Target folder on the bucket
+    is_expand: true
+    is_required: true
+  - 
+    mapped_to: GCS_BUCKET
+    title: Google Clooud Bucket
+    is_expand: true
+    is_required: true
+  - 
+    mapped_to: GCS_PROJECT_ID
+    title: Google Cloud Project ID
+    is_expand: true
+    is_required: true

@@ -1,0 +1,8 @@
+{
+	"deps": [
+		{
+			"url": "https://github.com/golang/oauth2.git",
+			"store_path": "oauth2"
+		}
+	]
+}
