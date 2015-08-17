@@ -5,10 +5,10 @@ import (
 	"log"
 	"os"
 	"strings"
-	"golang.org/x/oauth2"
-	"golang.org/x/oauth2/google"
-	"golang.org/x/oauth2/jwt"
-	storage "google.golang.org/api/storage/v1"
+	"./oauth2"
+	"./oauth2/google"
+	"./oauth2/jwt"
+	storage "./gapi/storage/v1"
 )
 
 const (
