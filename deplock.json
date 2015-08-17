@@ -1,8 +1,0 @@
-{
-	"dep_locks": [
-		{
-			"url": "https://github.com/golang/oauth2.git",
-			"revision": "397fe7649477ff2e8ced8fc0b2696f781e53745a"
-		}
-	]
-}
