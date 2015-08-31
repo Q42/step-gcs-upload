@@ -11,13 +11,6 @@ import (
 	storage "google.golang.org/api/storage/v1"
 )
 
-const (
-	// This can be changed to any valid object name.
-	objectName = "test-file"
-	// This scope allows the application full control over resources in Google Cloud Storage
-	scope = storage.DevstorageFullControlScope
-)
-
 func fatalf(service *storage.Service, errorMessage string, args ...interface{}) {
 	log.Fatalf("Dying with error:\n"+errorMessage, args...)
 }
@@ -56,8 +49,14 @@ func main() {
 		os.Exit(1)
 	}
 
-	fileName := os.Getenv("BITRISE_IPA_PATH")
+	fileName := os.Getenv("GCS_FILENAME")
 	if fileName == "" {
+		log.Fatalf("$GCS_FILENAME is not provided!")
+		os.Exit(1)
+	}
+
+	ipaPath := os.Getenv("BITRISE_IPA_PATH")
+	if ipaPath == "" {
 		log.Fatalf("$BITRISE_IPA_PATH is not provided!")
 		os.Exit(1)
 	}
@@ -100,10 +99,10 @@ func main() {
 	}
 
 	// Insert an object into a bucket.
-	object := &storage.Object{Name: fmt.Sprintf("%v/%v/build.ipa", targetFolder, branch)}
-	file, err := os.Open(fileName)
+	object := &storage.Object{Name: fmt.Sprintf("%v/%v/%s.ipa", targetFolder, branch, fileName)}
+	file, err := os.Open(ipaPath)
 	if err != nil {
-		fatalf(service, "Error opening %q: %v", fileName, err)
+		fatalf(service, "Error opening %q: %v", ipaPath, err)
 	}
 	if res, err := service.Objects.Insert(bucketName, object).Media(file).Do(); err == nil {
 		fmt.Printf("Created object %v at location %v\n\n", res.Name, res.SelfLink)

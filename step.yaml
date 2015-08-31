@@ -29,11 +29,16 @@ inputs:
     is_required: true
   - 
     mapped_to: GCS_BUCKET
-    title: Google Clooud Bucket
+    title: Google Cloud Bucket
     is_expand: true
     is_required: true
   - 
     mapped_to: GCS_PROJECT_ID
     title: Google Cloud Project ID
+    is_expand: true
+    is_required: true
+  - 
+    mapped_to: GCS_FILENAME
+    title: The name of the IPA on Google Cloud
     is_expand: true
     is_required: true
